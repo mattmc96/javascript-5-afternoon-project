@@ -107,8 +107,9 @@ class ProgressiveManager extends Manager {
   fire(index) {
     this.reports.splice(index, 1);
   }
-  checkTitle() {
-    if (this.reports === 0) {
+  hire() {
+    super.hire();
+    if (this.reports.length === 0) {
       return (this.title = "Not a manager");
     } else if (this.reports.length >= 1 && this.reports.length <= 3) {
       return (this.title = "Barely Manager");
