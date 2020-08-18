@@ -151,7 +151,7 @@ var module = (function () {
   // outside our lexical scope
   return {
     // Code here.
-    publicMethod: function () {
+    publicMethod() {
       return privateMethod();
     },
   };
@@ -172,12 +172,12 @@ function secretNumber() {
   var secret = 143;
 
   return {
-      increment: addToSecret (){
-      changeBy (1)
-    }
-    decrement: takeAwayFromSecret(){
-      changeBy (1)
-    }
+    addToSecret: function (num) {
+      return (secret += num);
+    },
+    takeAwayFromSecret(num) {
+      return (secret -= num);
+    },
   };
 }
 
@@ -199,12 +199,15 @@ function secretNumber() {
   Fix the code below to log the desired output.
 */
 
-// function timeOutCounter() {
-//   for (var i = 0; i <= 5; i++) {
-//     setTimeout(function () {
-//       console.log(i);
-//     }, i * 1000);
-//   }
-// }
-// var inner = timeOutCounter();
-// timeOutCounter();
+function timeOutCounter() {
+  for (var i = 0; i <= 5; i++) {
+    const memoryCloser = () => {
+      let count = i;
+      setTimeout(function () {
+        console.log(count);
+      }, i * 1000);
+    };
+    memoryCloser();
+  }
+}
+timeOutCounter();
