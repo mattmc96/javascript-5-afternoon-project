@@ -41,7 +41,6 @@ class Employee {
     return `${this.first_name} ${this.last_name} Widget`;
   }
 }
-k;
 
 ////////// PROBLEM 2 //////////
 

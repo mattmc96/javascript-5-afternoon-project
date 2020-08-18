@@ -51,22 +51,26 @@ function callFriend(name) {
 */
 
 //Code Here
+const callJake = callFriend("Jake");
 
-var callJake = dial(callJake);
 ////////// PROBLEM 3 //////////
-
 /*
   Write a function called makeCounter that makes the following code work properly.
 */
 
 //Code Here
-
+function makeCounter() {
+  let num = 0;
+  return function () {
+    return ++num;
+  };
+}
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+var count = makeCounter();
+count(); // 1
+count(); // 2
+count(); // 3
+count(); // 4
 
 ////////// PROBLEM 4 //////////
 
@@ -80,19 +84,24 @@ var callJake = dial(callJake);
 */
 
 function counterFactory(value) {
-  // Code here.
+  return {
+    inc: function () {
+      return (value += 1);
+    },
 
-  return {};
+    dec: function () {
+      return (value -= 1);
+    },
+  };
 }
 
 counter = counterFactory(10);
-// counter.inc() // 11
-// counter.inc() // 12
-// counter.inc() // 13
-// counter.dec() // 12
+counter.inc(); // 11
+counter.inc(); // 12
+counter.inc(); // 13
+counter.dec(); // 12
 
 ////////// PROBLEM 5 //////////
-
 /*
   Inside the motivation function create another function called message that will return the welcome text with the firstname and lastname.
   The final message should say "You're doing awesome, keep it up firstname lastname." 
@@ -100,15 +109,18 @@ counter = counterFactory(10);
 */
 
 function motivation(firstname, lastname) {
-  var welcomeText = "You're doing awesome, keep it up";
+  var welcomeText = "You're doing awesome, keep it up ";
 
   // code message function here.
+  function message() {
+    return welcomeText + firstname + " " + lastname + ".";
+  }
 
-  //Uncommment this to return the value of your message function
-  //return message;
+  //Uncommment this to return the value of your invoked message function
+  return message;
 }
 
-var greeting = motivation("Billy", "Bob"); // 'You're doing awesome keep it up Billy Bob.
+var message = motivation("Billy", "Bob"); // 'You're doing awesome keep it up Billy Bob.
 
 ////////// PROBLEM 6 //////////
 
@@ -139,8 +151,13 @@ var module = (function () {
   // outside our lexical scope
   return {
     // Code here.
+    publicMethod: function () {
+      return privateMethod();
+    },
   };
 })();
+
+module.publicMethod();
 
 ////////// PROBLEM 7 //////////
 
@@ -155,7 +172,12 @@ function secretNumber() {
   var secret = 143;
 
   return {
-    // Code here
+      increment: addToSecret (){
+      changeBy (1)
+    }
+    decrement: takeAwayFromSecret(){
+      changeBy (1)
+    }
   };
 }
 
@@ -177,11 +199,12 @@ function secretNumber() {
   Fix the code below to log the desired output.
 */
 
-function timeOutCounter() {
-  for (var i = 0; i <= 5; i++) {
-    setTimeout(function () {
-      console.log(i);
-    }, i * 1000);
-  }
-}
-timeOutCounter();
+// function timeOutCounter() {
+//   for (var i = 0; i <= 5; i++) {
+//     setTimeout(function () {
+//       console.log(i);
+//     }, i * 1000);
+//   }
+// }
+// var inner = timeOutCounter();
+// timeOutCounter();
